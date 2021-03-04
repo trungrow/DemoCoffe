@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_CoffeAppModelStoreContainer" CdmEntityContainer="DB_CoffeAppEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.Admin">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+          <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+          <ScalarProperty Name="AdminFullName" ColumnName="AdminFullName" />
+          <ScalarProperty Name="AdminMail" ColumnName="AdminMail" />
+          <ScalarProperty Name="AdminPhone" ColumnName="AdminPhone" />
+          <ScalarProperty Name="AdminAddress" ColumnName="AdminAddress" />
+          <ScalarProperty Name="AdminAvatar" ColumnName="AdminAvatar" />
+          <ScalarProperty Name="AdminBrithDay" ColumnName="AdminBrithDay" />
+          <ScalarProperty Name="AdminGender" ColumnName="AdminGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.Staff">
+        <MappingFragment StoreEntitySet="Staffs">
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="StaffCode" ColumnName="StaffCode" />
+          <ScalarProperty Name="StaffPassword" ColumnName="StaffPassword" />
+          <ScalarProperty Name="StaffFullName" ColumnName="StaffFullName" />
+          <ScalarProperty Name="StaffMail" ColumnName="StaffMail" />
+          <ScalarProperty Name="StaffPhone" ColumnName="StaffPhone" />
+          <ScalarProperty Name="StaffAddress" ColumnName="StaffAddress" />
+          <ScalarProperty Name="StaffAvatar" ColumnName="StaffAvatar" />
+          <ScalarProperty Name="StaffBrithDay" ColumnName="StaffBrithDay" />
+          <ScalarProperty Name="StaffGender" ColumnName="StaffGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryStatus" ColumnName="CategoryStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CoffeTables">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.CoffeTable">
+        <MappingFragment StoreEntitySet="CoffeTables">
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="TableSize" ColumnName="TableSize" />
+          <ScalarProperty Name="TableDisplay" ColumnName="TableDisplay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CoffeTableStates">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.CoffeTableState">
+        <MappingFragment StoreEntitySet="CoffeTableStates">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateColor" ColumnName="StateColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+          <ScalarProperty Name="OrderStart" ColumnName="OrderStart" />
+          <ScalarProperty Name="OrderEnd" ColumnName="OrderEnd" />
+          <ScalarProperty Name="OrderPeoPleQuantity" ColumnName="OrderPeoPleQuantity" />
+          <ScalarProperty Name="OrderCodeDiscount" ColumnName="OrderCodeDiscount" />
+          <ScalarProperty Name="OrderTotalDiscount" ColumnName="OrderTotalDiscount" />
+          <ScalarProperty Name="OrderTotalTax" ColumnName="OrderTotalTax" />
+          <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+          <ScalarProperty Name="OrderCheckout" ColumnName="OrderCheckout" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="DB_CoffeAppModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscount" ColumnName="ProductDiscount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

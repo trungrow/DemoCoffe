@@ -1,0 +1,16 @@
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\DemoCoffe.exe.config
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\DemoCoffe.exe
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\DemoCoffe.pdb
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\EntityFramework.dll
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\EntityFramework.xml
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.Main.resources
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.Masters.TableMaster.resources
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.Masters.StaffMaster.resources
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.Properties.Resources.resources
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.csproj.GenerateResource.cache
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.csproj.CoreCompileInputs.cache
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.csproj.CopyComplete
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.exe
+C:\Users\KVN\source\repos\DemoCoffe\DemoCoffe\obj\Debug\DemoCoffe.pdb

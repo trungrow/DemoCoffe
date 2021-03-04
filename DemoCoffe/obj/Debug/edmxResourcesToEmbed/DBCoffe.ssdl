@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_CoffeAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminUserName" Type="varchar" MaxLength="20" />
+    <Property Name="AdminPassword" Type="varchar" MaxLength="100" />
+    <Property Name="AdminFullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdminMail" Type="varchar" MaxLength="50" />
+    <Property Name="AdminPhone" Type="varchar" MaxLength="20" />
+    <Property Name="AdminAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="AdminAvatar" Type="varchar" MaxLength="100" />
+    <Property Name="AdminBrithDay" Type="date" />
+    <Property Name="AdminGender" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CoffeApp.dbo.Categories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryStatus" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CoffeApp.dbo.CoffeTables' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CoffeTables">
+    <Key>
+      <PropertyRef Name="TableId" />
+    </Key>
+    <Property Name="TableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="30" />
+    <Property Name="TableSize" Type="int" />
+    <Property Name="TableDisplay" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CoffeApp.dbo.CoffeTableStates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CoffeTableStates">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateColor" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CoffeApp.dbo.OrderDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="OrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="ProductQuantity" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CoffeApp.dbo.Orders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderCode" Type="varchar" MaxLength="20" />
+    <Property Name="OrderStart" Type="datetime" />
+    <Property Name="OrderEnd" Type="datetime" />
+    <Property Name="OrderPeoPleQuantity" Type="int" />
+    <Property Name="OrderCodeDiscount" Type="varchar" MaxLength="20" />
+    <Property Name="OrderTotalDiscount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="OrderTotalTax" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="OrderTotal" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="OrderCheckout" Type="bit" />
+    <Property Name="TableId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CoffeApp.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProductPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ProductDiscount" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Staffs">
+    <Key>
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="StaffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffCode" Type="varchar" MaxLength="20" />
+    <Property Name="StaffPassword" Type="varchar" MaxLength="100" />
+    <Property Name="StaffFullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="StaffMail" Type="varchar" MaxLength="50" />
+    <Property Name="StaffPhone" Type="varchar" MaxLength="20" />
+    <Property Name="StaffAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="StaffAvatar" Type="varchar" MaxLength="100" />
+    <Property Name="StaffBrithDay" Type="date" />
+    <Property Name="StaffGender" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="DB_CoffeAppModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staffs" EntityType="Self.Staffs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Categories].[CategoryId] AS [CategoryId], 
+    [Categories].[CategoryName] AS [CategoryName], 
+    [Categories].[CategoryStatus] AS [CategoryStatus]
+    FROM [dbo].[Categories] AS [Categories]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CoffeTables" EntityType="Self.CoffeTables" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CoffeTables].[TableId] AS [TableId], 
+    [CoffeTables].[TableName] AS [TableName], 
+    [CoffeTables].[TableSize] AS [TableSize], 
+    [CoffeTables].[TableDisplay] AS [TableDisplay]
+    FROM [dbo].[CoffeTables] AS [CoffeTables]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CoffeTableStates" EntityType="Self.CoffeTableStates" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CoffeTableStates].[StateId] AS [StateId], 
+    [CoffeTableStates].[StateName] AS [StateName], 
+    [CoffeTableStates].[StateColor] AS [StateColor]
+    FROM [dbo].[CoffeTableStates] AS [CoffeTableStates]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [OrderDetails].[OrderDetailId] AS [OrderDetailId], 
+    [OrderDetails].[ProductId] AS [ProductId], 
+    [OrderDetails].[ProductQuantity] AS [ProductQuantity]
+    FROM [dbo].[OrderDetails] AS [OrderDetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Orders" EntityType="Self.Orders" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Orders].[OrderId] AS [OrderId], 
+    [Orders].[OrderCode] AS [OrderCode], 
+    [Orders].[OrderStart] AS [OrderStart], 
+    [Orders].[OrderEnd] AS [OrderEnd], 
+    [Orders].[OrderPeoPleQuantity] AS [OrderPeoPleQuantity], 
+    [Orders].[OrderCodeDiscount] AS [OrderCodeDiscount], 
+    [Orders].[OrderTotalDiscount] AS [OrderTotalDiscount], 
+    [Orders].[OrderTotalTax] AS [OrderTotalTax], 
+    [Orders].[OrderTotal] AS [OrderTotal], 
+    [Orders].[OrderCheckout] AS [OrderCheckout], 
+    [Orders].[TableId] AS [TableId]
+    FROM [dbo].[Orders] AS [Orders]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Products" EntityType="Self.Products" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Products].[ProductId] AS [ProductId], 
+    [Products].[ProductName] AS [ProductName], 
+    [Products].[ProductDescription] AS [ProductDescription], 
+    [Products].[ProductPrice] AS [ProductPrice], 
+    [Products].[ProductDiscount] AS [ProductDiscount]
+    FROM [dbo].[Products] AS [Products]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
