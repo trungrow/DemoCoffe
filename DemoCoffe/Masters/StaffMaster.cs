@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -25,7 +27,7 @@ namespace DemoCoffe.Masters
 
         private void StaffMaster_Load(object sender, EventArgs e)
         {
-
+            LoadAddUC();
             LoadDataToGrid();
         }
 
@@ -43,128 +45,46 @@ namespace DemoCoffe.Masters
                 }
             }
         }
-
-        #endregion
-
-        #region Data
-
-        Entities.Staff Set()
+        private void bgLoadData_DoWork(object sender, DoWorkEventArgs e)
         {
-            Entities.Staff sf = new Entities.Staff();
-            sf.StaffCode = txtCode.Text;
-            sf.StaffPassword = txtPassword.Text;
-
-            var img = new Bitmap(picAvatar.Image);
-            sf.StaffAvatar = ImageToByte(img);
-
-            sf.StaffFullName = txtFullName.Text;
-            sf.StaffGender = rdMale.Checked ? true : false;
-            sf.StaffBrithDay = dtpBrithDay.Value;
-            sf.StaffPhone = txtPhone.Text;
-            sf.StaffMail = txtEmail.Text;
-            sf.StaffAddress = txtAddress.Text;
-
-            return sf;
-
+            bgLoadData.WorkerReportsProgress = true;
+            for (int i = 0; i <= statusProcess.Maximum; i++)
+            {
+                bgLoadData.ReportProgress(i);
+            }
         }
 
-        void Show(Entities.Staff sf)
+        private void bgLoadData_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            txtId.Text = sf.StaffId + "";
-            txtCode.Text = sf.StaffCode;
-
-            txtFullName.Text = sf.StaffFullName;
-            if (sf.StaffGender.Value)
-                rdMale.Checked = true;
-            else
-                rdFemale.Checked = true;
-
-            dtpBrithDay.Value = sf.StaffBrithDay.Value;
-            txtPhone.Text = sf.StaffPhone;
-            txtEmail.Text = sf.StaffMail;
-            txtAddress.Text = sf.StaffAddress;
+            statusProcess.Value = e.ProgressPercentage;
         }
 
-
+        private void bgLoadData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            statusLabel.Text = "success";
+        }
 
         #endregion
 
         #region Logic
 
-        private void btnUpLoad_Click(object sender, EventArgs e)
+
+
+        private void dgvStaff_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = "Image files (*.jpg, *.png) | *.jpg; *.png";
-            var block = true;
-            while (block)
+            var dgv = sender as DataGridView;
+            if (dgv != null && e.RowIndex >= 0)
             {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var size = new System.IO.FileInfo(dialog.FileName).Length;
-                    if (size > 8000)
-                    {
-                        var info = MessageBox.Show("Hình Ảnh bạn chọn có kích cỡ quá 8KB hãy chọn hình ảnh có kích cỡ nhỏ hơn. \r Bạn Muốn chọn lại Hình Ảnh?", "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (info == DialogResult.Cancel)
-                        {
-                            dialog.FileName = "";
-                            block = false;
-                        }
-                    }
-                    else
-                        block = false;
-                }
-                else
-                    block = false;
+                var id = dgv.Rows[e.RowIndex].Cells[0].Value;
+                var sf = db.Staffs.Find(id);
+                //if (sf != null)
+                //    Show(sf);
             }
-
-            if (!string.IsNullOrEmpty(dialog.FileName))
-            {
-                picAvatar.ImageLocation = dialog.FileName;
-            }
-        }
-
-        private void btnDelLoad_Click(object sender, EventArgs e)
-        {
-            var box = new Bitmap(Properties.Resources.user);
-            picAvatar.Image = box;
-        }
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var sf = Set();
-                db.Staffs.Add(sf);
-                var check = db.SaveChanges();
-                if (check > 0)
-                {
-                    MessageBox.Show("Thêm Thành Công! \r Bạn có muốn thêm tiếp Nhân Viên?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    LoadDataToGrid();
-                }
-                else
-                {
-                    MessageBox.Show("Thêm Thất Bại!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            dgvStaff.DataSource = db.Staffs.ToList();
+            LoadDataToGrid();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -176,6 +96,7 @@ namespace DemoCoffe.Masters
         {
             dgvStaff.DataSource = db.Staffs.ToList();
         }
+
         #endregion
 
         #region Helper
@@ -183,6 +104,7 @@ namespace DemoCoffe.Masters
 
         void LoadDataToGrid()
         {
+
             //var sfs = db.Staffs.Select(x => new { x.StaffCode, x.StaffFullName, Gender=(x.StaffGender.Value?"Nam":"Nu"),
             //                x.StaffBrithDay.Value.ToString("dd/MM/yyyy"), x.StaffPhone, x.StaffMail, x.StaffAddress});
             var sfs = (from a in db.Staffs
@@ -197,33 +119,79 @@ namespace DemoCoffe.Masters
                            Mail = a.StaffMail,
                            Image = a.StaffAvatar,
                            Address = a.StaffAddress
-                       }).ToList();
+                       }).OrderByDescending(x=>x.Id).ToList();
 
+            statusProcess.Maximum = sfs.Count;
+            bgLoadData.RunWorkerAsync();
             dgvStaff.DataSource = sfs;
             //dgvStaff.Update();
         }
 
-        byte[] ImageToByte(Image img)
-        {
-            ImageConverter converter = new ImageConverter();
-            return (byte[])converter.ConvertTo(img, typeof(byte[]));
-        }
-
-        Bitmap ByteToImage(byte[] blod)
-        {
-            if (blod == null)
-                return new Bitmap(Properties.Resources.user);
-
-            MemoryStream memoryStream = new MemoryStream();
-            byte[] pdata = blod;
-            memoryStream.Write(pdata, 0, Convert.ToInt32(pdata.Length));
-            var bm = new Bitmap(memoryStream, false);
-            memoryStream.Dispose();
-
-            return bm;
-        }
-
 
         #endregion
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadAddUC();
+        }
+
+        #region Load Componet
+
+        void LoadAddUC()
+        {
+            leftLayout.Controls.Clear();
+            leftLayout.Controls.Add(ViewModel.StaffComponent.AddUC.Instance);
+            ViewModel.StaffComponent.AddUC.Instance.Dock = DockStyle.Fill;
+            ViewModel.StaffComponent.AddUC.Instance.BringToFront();
+        }
+        void LoadInfoEditUC()
+        {
+            leftLayout.Controls.Clear();
+            leftLayout.Controls.Add(ViewModel.StaffComponent.InfoEditUC.Instance);
+            ViewModel.StaffComponent.InfoEditUC.Instance.Dock = DockStyle.Fill;
+            ViewModel.StaffComponent.InfoEditUC.Instance.BringToFront();
+        }
+        void LoadPassEditUC()
+        {
+            leftLayout.Controls.Clear();
+            leftLayout.Controls.Add(ViewModel.StaffComponent.PassEditUC.Instance);
+            ViewModel.StaffComponent.PassEditUC.Instance.Dock = DockStyle.Fill;
+            ViewModel.StaffComponent.PassEditUC.Instance.BringToFront();
+        }
+        void LoadInfoShowUC()
+        {
+            leftLayout.Controls.Clear();
+            leftLayout.Controls.Add(ViewModel.StaffComponent.InfoShowUC.Instance);
+            ViewModel.StaffComponent.InfoShowUC.Instance.Dock = DockStyle.Fill;
+            ViewModel.StaffComponent.InfoShowUC.Instance.BringToFront();
+        }
+        void LoadDeleteUC()
+        {
+            leftLayout.Controls.Clear();
+            leftLayout.Controls.Add(ViewModel.StaffComponent.DeleteUC.Instance);
+            ViewModel.StaffComponent.DeleteUC.Instance.Dock = DockStyle.Fill;
+            ViewModel.StaffComponent.DeleteUC.Instance.BringToFront();
+        }
+        #endregion
+
+        private void cmsView_Click(object sender, EventArgs e)
+        {
+            LoadInfoShowUC();
+        }
+
+        private void cmsInfoEdit_Click(object sender, EventArgs e)
+        {
+            LoadInfoEditUC();
+        }
+
+        private void cmsPassEdit_Click(object sender, EventArgs e)
+        {
+            LoadPassEditUC();
+        }
+
+        private void cmsDelete_Click(object sender, EventArgs e)
+        {
+            LoadDeleteUC();
+        }
     }
 }

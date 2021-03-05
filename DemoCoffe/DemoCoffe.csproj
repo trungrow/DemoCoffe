@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -63,6 +64,7 @@
     <Compile Include="Entities\OrderDetail.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Staff.cs" />
+    <Compile Include="Helper\FileHelepr.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +85,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\StaffComponent\AddUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\AddUC.Designer.cs">
+      <DependentUpon>AddUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\DeleteUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\DeleteUC.Designer.cs">
+      <DependentUpon>DeleteUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\InfoEditUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\InfoEditUC.Designer.cs">
+      <DependentUpon>InfoEditUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\InfoShowUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\InfoShowUC.Designer.cs">
+      <DependentUpon>InfoShowUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\PassEditUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewModel\StaffComponent\PassEditUC.Designer.cs">
+      <DependentUpon>PassEditUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +134,21 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ViewModel\StaffComponent\AddUC.resx">
+      <DependentUpon>AddUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\StaffComponent\DeleteUC.resx">
+      <DependentUpon>DeleteUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\StaffComponent\InfoEditUC.resx">
+      <DependentUpon>InfoEditUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\StaffComponent\InfoShowUC.resx">
+      <DependentUpon>InfoShowUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\StaffComponent\PassEditUC.resx">
+      <DependentUpon>PassEditUC.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
